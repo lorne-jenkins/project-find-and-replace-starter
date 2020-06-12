@@ -55,7 +55,7 @@ button {
     word-wrap: hidden;
     overflow: hidden;
     outline: 1px solid grey;
-    background: white;
+    background: rgb(200, 236, 145);
 }
 
 .row:hover .cell {
