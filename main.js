@@ -4,6 +4,7 @@
 const findInput = document.querySelector(".find-input")
 const replaceInput = document.querySelector(".replace-input")
 const replaceAllButton = document.querySelector(".replace-all-button")
+const replaceOneButton = document.querySelector(".replace-one-button")
 
 // The following variable holds your OUTER ARRAY of row elements.
 // Later you will need an OUTER LOOP to loop over the individual elements within
@@ -30,6 +31,24 @@ replaceAllButton.addEventListener('click', function () {
         for (let columnIndex = 0; columnIndex < 7; columnIndex++) {
             let targetColumnText = (targetRowElement[columnIndex].innerHTML)
             if (targetColumnText.includes(findInputText)) {
+                let newColumnText = targetColumnText.replace(findInputText, replaceInputText)
+                document.body.innerHTML = document.body.innerHTML.replace(targetColumnText, newColumnText)
+
+            }
+        }
+    }
+})
+replaceOneButton.addEventListener('click', function () {
+    let findInputText = findInput.value
+    let replaceInputText = replaceInput.value
+    let matchFoundFlag = 0
+    break_loop_here: for (let rowElementIndex = 0; rowElementIndex < rowElements.length; rowElementIndex++) {
+        if (matchFoundFlag===1){break break_loop_here}
+        let targetRowElement = getCellElements(rowElements[rowElementIndex])
+        for (let columnIndex = 0; columnIndex < 7; columnIndex++) {
+            let targetColumnText = (targetRowElement[columnIndex].innerHTML)
+            if (targetColumnText.includes(findInputText)) {
+                matchFoundFlag = 1
                 let newColumnText = targetColumnText.replace(findInputText, replaceInputText)
                 document.body.innerHTML = document.body.innerHTML.replace(targetColumnText, newColumnText)
 
