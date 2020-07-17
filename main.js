@@ -24,23 +24,31 @@ function getCellElements(currentRowElement) {
 // YOUR CODE GOES HERE
 
 replaceAllButton.addEventListener('click', function () {
+    console.log('Replace all button clicked')
     let findInputText = findInput.value
+    if (findInputText === ''){return}
     let replaceInputText = replaceInput.value
+    if (replaceInputText === ''){return}
     for (let rowElementIndex = 0; rowElementIndex < rowElements.length; rowElementIndex++) {
         let targetRowElement = getCellElements(rowElements[rowElementIndex])
         for (let columnIndex = 0; columnIndex < 7; columnIndex++) {
             let targetColumnText = (targetRowElement[columnIndex].innerHTML)
-            if (targetColumnText.includes(findInputText)) {
-                let newColumnText = targetColumnText.replace(findInputText, replaceInputText)
+            while (targetColumnText.includes(findInputText)) {
+                let newColumnText = targetColumnText.replace(findInputText, replaceInputText)          
                 document.body.innerHTML = document.body.innerHTML.replace(targetColumnText, newColumnText)
-
+                targetColumnText = newColumnText
+                console.log('This is the targeted text', newColumnText)
             }
         }
-    }
+    }console.log('Done looping')
 })
+
 replaceOneButton.addEventListener('click', function () {
+    console.log('Replace one button clicked')
     let findInputText = findInput.value
+    if (findInputText === ''){return}
     let replaceInputText = replaceInput.value
+    if (replaceInputText === ''){return}
     let matchFoundFlag = 0
     break_loop_here: for (let rowElementIndex = 0; rowElementIndex < rowElements.length; rowElementIndex++) {
         if (matchFoundFlag===1){break break_loop_here}
